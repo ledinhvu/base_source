@@ -20,6 +20,7 @@ Route::get('/404',function(){
 
 Auth::routes(['reset' => false]);
 
+// Route::get('logout', 'Auth\LoginController@logout');
 Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
 Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
 

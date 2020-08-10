@@ -77,3 +77,38 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 # base_source
+
+## Install clamav
+
+For Linux
+# Install clamav virus scanner
+sudo apt-get update && sudo apt-get install -y clamav-daemon
+
+# Update virus definitions
+sudo freshclam
+
+# Start the scanner service
+sudo systemctl enable --now clamav-daemon clamav-freshclam
+
+For Win
+
+## Add extension in php.ini
+extension=php_sockets.dll
+
+## Run command
+composer require sunspikes/clamav-validator
+
+## Publish assets from the the vendor package
+php artisan vendor:publish --provider="Sunspikes\ClamavValidator\ClamavValidatorServiceProvider" --tag=config
+
+
+## Language files
+php artisan vendor:publish --provider="Sunspikes\ClamavValidator\ClamavValidatorServiceProvider" --tag=lang
+
+This will copy the language files to resources/lang/vendor/clamav-validator for Laravel >= 5.1
+
+## Usage
+
+$rules = [
+    'file' => 'clamav',
+];
